@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modern Landing Page</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<nav>
+  <h1>MyLanding</h1>
+  <ul>
+    <li onclick="scrollToSec('home')">Home</li>
+    <li onclick="scrollToSec('services')">Services</li>
+    <li onclick="scrollToSec('stats')">Stats</li>
+    <li onclick="scrollToSec('contact')">Contact</li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="home">
+  <h2 id="typing"></h2>
+  <p>Modern Landing Page with JavaScript Animations 🚀</p>
+  <button class="btn" onclick="showAlert()">Get Started</button>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <h2>Our Services</h2><br><br>
+
+  <div class="cards">
+    <div class="card">🔥 Web Design</div>
+    <div class="card">⚡ Web Development</div>
+    <div class="card">🚀 SEO Optimization</div>
+    <div class="card">💡 Marketing</div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <h2>Our Growth</h2><br><br>
+
+  <div class="stats">
+    <div class="stat-box">
+      <h3 id="clients">0</h3>
+      <p>Clients</p>
+    </div>
+
+    <div class="stat-box">
+      <h3 id="projects">0</h3>
+      <p>Projects</p>
+    </div>
+
+    <div class="stat-box">
+      <h3 id="awards">0</h3>
+      <p>Awards</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2>Contact Us</h2>
+  <p>Email: example@gmail.com</p>
+</section>
+
+<footer>
+  © 2026 Modern Landing Page | Made by Jani 😎
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
