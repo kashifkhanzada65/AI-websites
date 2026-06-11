@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Dynamic Landing Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body data-theme="dark">
+
+    <header>
+        <div class="logo">FlexiWeb</div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><button class="theme-btn" id="themeToggle">Light Mode</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Stunning Interfaces, Flawless Code</h1>
+        <p>Jani, yeh hai aik full-scale dynamic landing page. Scroll down karo aur features check karo!</p>
+        <a href="#contact" class="btn">Let's Connect</a>
+    </section>
+
+    <section class="stats">
+        <div class="stat-item">
+            <h2 class="counter" data-target="150">0</h2>
+            <p>Projects Delivered</p>
+        </div>
+        <div class="stat-item">
+            <h2 class="counter" data-target="99">0</h2>
+            <p>Happy Clients %</p>
+        </div>
+        <div class="stat-item">
+            <h2 class="counter" data-target="12">0</h2>
+            <p>Awards Won</p>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <h2>Our Main Services</h2>
+        <p class="section-desc">High quality standard features built with modern tech stack.</p>
+        <div class="card-container">
+            <div class="card">
+                <h3>UI/UX Design</h3>
+                <p>Crafting eye-catching layouts that turn visitors into loyal users.</p>
+            </div>
+            <div class="card">
+                <h3>Web Applications</h3>
+                <p>Powerful and scaling apps built using smart coding architectures.</p>
+            </div>
+            <div class="card">
+                <h3>SEO Marketing</h3>
+                <p>Optimizing your presence so you rank top on Google searches effortlessly.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <h2>Recent Showcases</h2>
+        <p class="section-desc">Take a look at what we've been working on recently.</p>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <div style="height: 200px; background: linear-gradient(45deg, #1e3a8a, #3b82f6);"></div>
+                <div class="port-info">
+                    <h4>E-Commerce Platform</h4>
+                    <p>Web Development / Shop</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div style="height: 200px; background: linear-gradient(45deg, #581c87, #a855f7);"></div>
+                <div class="port-info">
+                    <h4>Crypto Dashboard</h4>
+                    <p>UI Design / Analytics</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Get In Touch</h2>
+        <p class="section-desc">Have a question? Drop a message below!</p>
+        <form id="contactForm">
+            <input type="text" placeholder="Your Name" required id="userName">
+            <input type="email" placeholder="Your Email" required>
+            <textarea rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 FlexiWeb. All Rights Reserved.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
