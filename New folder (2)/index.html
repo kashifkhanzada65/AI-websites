@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Dynamic Landing Page</title>
+    <style>
+        /* Base Reset & Variables */
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #38bdf8;
+            --secondary: #a855f7;
+            --border-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Light Mode Variables */
+        [data-theme="light"] {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #0f172a;
+            --text-muted: #64748b;
+            --primary: #0284c7;
+            --secondary: #7c3aed;
+            --border-color: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: var(--bg-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        /* Theme Toggle Button */
+        .theme-btn {
+            background: none;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .theme-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 14px 35px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.5);
+        }
+
+        /* Stats Counter Section */
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 60px 8%;
+            background: var(--card-bg);
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stat-item h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .stat-item p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 8%;
+            text-align: center;
+        }
+
+        .services h2, .portfolio h2, .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            margin-bottom: 50px;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 15px;
+            transition: transform 0.3s, border-color 0.3s;
+            border: 1px solid var(--border-color);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 100px 8%;
+            background: var(--card-bg);
+            text-align: center;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .portfolio-item {
+            background: var(--bg-color);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s;
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.03);
+        }
+
+        .port-info {
+            padding: 20px;
+            text-align: left;
+        }
+
+        .port-info h4 {
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+
+        .port-info p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 100px 8%;
+            text-align: center;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            color: var(--text-color);
+            font-size: 16px;
+            outline: none;
+        }
+
+        form input:focus, form textarea:focus {
+            border-color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: var(--bg-color);
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Responsive Settings */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            nav { display: none; }
+            .stats { flex-direction: column; gap: 30px; }
+        }
+    </style>
+</head>
+<body data-theme="dark">
+
+    <header>
+        <div class="logo">FlexiWeb</div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><button class="theme-btn" id="themeToggle">Light Mode</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Stunning Interfaces, Flawless Code</h1>
+        <p>Jani, yeh hai aik full-scale dynamic landing page. Scroll down karo aur features check karo!</p>
+        <a href="#contact" class="btn">Let's Connect</a>
+    </section>
+
+    <section class="stats">
+        <div class="stat-item">
+            <h2 class="counter" data-target="150">0</h2>
+            <p>Projects Delivered</p>
+        </div>
+        <div class="stat-item">
+            <h2 class="counter" data-target="99">0</h2>
+            <p>Happy Clients %</p>
+        </div>
+        <div class="stat-item">
+            <h2 class="counter" data-target="12">0</h2>
+            <p>Awards Won</p>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <h2>Our Main Services</h2>
+        <p class="section-desc">High quality standard features built with modern tech stack.</p>
+        <div class="card-container">
+            <div class="card">
+                <h3>UI/UX Design</h3>
+                <p>Crafting eye-catching layouts that turn visitors into loyal users.</p>
+            </div>
+            <div class="card">
+                <h3>Web Applications</h3>
+                <p>Powerful and scaling apps built using smart coding architectures.</p>
+            </div>
+            <div class="card">
+                <h3>SEO Marketing</h3>
+                <p>Optimizing your presence so you rank top on Google searches effortlessly.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <h2>Recent Showcases</h2>
+        <p class="section-desc">Take a look at what we've been working on recently.</p>
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <div style="height: 200px; background: linear-gradient(45deg, #1e3a8a, #3b82f6);"></div>
+                <div class="port-info">
+                    <h4>E-Commerce Platform</h4>
+                    <p>Web Development / Shop</p>
+                </div>
+            </div>
+            <div class="portfolio-item">
+                <div style="height: 200px; background: linear-gradient(45deg, #581c87, #a855f7);"></div>
+                <div class="port-info">
+                    <h4>Crypto Dashboard</h4>
+                    <p>UI Design / Analytics</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Get In Touch</h2>
+        <p class="section-desc">Have a question? Drop a message below!</p>
+        <form id="contactForm">
+            <input type="text" placeholder="Your Name" required id="userName">
+            <input type="email" placeholder="Your Email" required>
+            <textarea rows="5" placeholder="Your Message" required></textarea>
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 FlexiWeb. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // 1. Dark/Light Theme Toggle Feature
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            if (currentTheme === 'dark') {
+                body.setAttribute('data-theme', 'light');
+                themeToggle.textContent = 'Dark Mode';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeToggle.textContent = 'Light Mode';
+            }
+        });
+
+        // 2. Animated Counter Feature for Stats
+        const counters = document.querySelectorAll('.counter');
+        counters.forEach(counter => {
+            counter.innerText = '0';
+            const updateCounter = () => {
+                const target = +counter.getAttribute('data-target');
+                const c = +counter.innerText;
+                const increment = target / 50; // Speed control
+
+                if(c < target) {
+                    counter.innerText = `${Math.ceil(c + increment)}`;
+                    setTimeout(updateCounter, 30);
+                } else {
+                    counter.innerText = target + (target === 99 ? '%' : '+');
+                }
+            };
+            updateCounter();
+        });
+
+        // 3. Dynamic Form Submission Handle
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // page reload hone se rokta hai
+            const name = document.getElementById('userName').value;
+            alert(`Thank you, ${name}! Your message has been received successfully.`);
+            this.reset(); // clear input fields
+        });
+    </script>
+</body>
+</html>
